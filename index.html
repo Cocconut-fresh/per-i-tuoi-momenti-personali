@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#120b17">
+<title>Per Sara, da Bopi ❤️</title>
+<style>
+:root{--bg:#0d0912;--card:rgba(255,255,255,.075);--line:rgba(255,255,255,.12);--text:#fff8fb;--muted:#cdbfc9;--pink:#ff7fa8;--pink2:#ff4e87}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at 18% 8%,rgba(255,88,139,.2),transparent 34%),radial-gradient(circle at 90% 82%,rgba(170,85,255,.15),transparent 35%),var(--bg);overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.22;background-image:radial-gradient(rgba(255,255,255,.8) 1px,transparent 1px);background-size:43px 43px}
+.app{width:min(100%,540px);margin:auto;padding:24px 17px 42px;position:relative}.hero{text-align:center;padding:24px 8px 20px}.heart{font-size:50px;filter:drop-shadow(0 0 22px rgba(255,89,137,.45));animation:pulse 2.3s infinite}
+h1{font-size:31px;margin:10px 0 5px;letter-spacing:-.7px}.subtitle{color:var(--muted);line-height:1.5;margin:0 auto;max-width:410px}.from{font-size:13px;color:#a99ba6;margin-top:9px}
+.card{border:1px solid var(--line);background:var(--card);backdrop-filter:blur(18px);border-radius:27px;padding:20px;margin:14px 0;box-shadow:0 18px 55px rgba(0,0,0,.22)}
+.card h2{font-size:20px;margin:0 0 7px}.card p{color:var(--muted);line-height:1.5;margin:0 0 16px}.buttons{display:grid;gap:11px}
+button{width:100%;border:1px solid var(--line);color:var(--text);background:rgba(255,255,255,.07);border-radius:18px;padding:16px 15px;text-align:left;font-size:16px;cursor:pointer;transition:.2s transform,.2s background}
+button:active{transform:scale(.985)}button:hover{background:rgba(255,255,255,.11)}button.primary{background:linear-gradient(135deg,var(--pink),var(--pink2));border:0;font-weight:700}
+.small{font-size:13px;color:#a999a5;text-align:center;margin-top:20px}
+.hidden{display:none !important}
+.overlay{position:fixed;inset:0;background:rgba(8,5,12,.85);backdrop-filter:blur(15px);display:flex;align-items:center;justify-content:center;padding:18px;z-index:10}
+.modal{width:min(100%,500px);max-height:92vh;overflow:auto;text-align:center;border:1px solid var(--line);background:rgba(24,16,29,.96);border-radius:30px;padding:27px 21px;box-shadow:0 30px 100px rgba(0,0,0,.55)}
+.modal h2{font-size:25px;margin:5px 0 15px}.signature{color:var(--pink)!important;font-weight:700;margin:15px 0}
+.close{margin-top:15px;text-align:center;background:rgba(255,255,255,.08)}
+.breatheWrap{display:flex;justify-content:center;align-items:center;height:180px}.breath{width:95px;height:95px;border-radius:50%;background:radial-gradient(circle,#ffe1e9 0 15%,#ff7fa8 50%,#a82a59 100%);box-shadow:0 0 48px rgba(255,105,150,.45);display:flex;align-items:center;justify-content:center;text-align:center;font-weight:700;animation:breathe 8s ease-in-out infinite}
+@keyframes breathe{0%,100%{transform:scale(.72)}50%{transform:scale(1.55)}}@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+.heartline{font-size:30px;letter-spacing:5px;margin:8px 0}
+.counter-box{background:rgba(255,255,255,.04);border:1px dashed var(--line);border-radius:18px;padding:12px;text-align:center;font-size:14px;color:var(--muted);margin-bottom:14px}
+.counter-box span{color:var(--pink);font-weight:700}
+.audio-btn{background:rgba(255,127,168,.15)!important;border:1px solid var(--pink)!important;text-align:center!important;font-weight:700;color:var(--pink)!important;margin:12px 0}
+
+/* Stile Griglia Foto (62 foto) */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  max-height: 55vh;
+  overflow-y: auto;
+  padding: 4px;
+  margin: 15px 0;
+}
+.photo-item {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  transition: transform 0.2s;
+}
+.photo-item:hover {
+  transform: scale(1.03);
+}
+</style>
+</head>
+<body>
+<main class="app">
+<section class="hero">
+<div class="heart">❤️</div>
+<h1>Per te, Sara</h1>
+<p class="subtitle">Un piccolo posto dove puoi venire quando hai bisogno di Bopi.<br>Quando arriva l'ansia, quando ti manco, o semplicemente quando hai bisogno di sentirti amata.</p>
+<div class="from">Con amore, Bopi ❤️</div>
+</section>
+
+<!-- Contatore Giorni Insieme (Anniversario: 08/11/2025) -->
+<div class="counter-box" id="counterBox">
+  Insieme da <span id="daysCount">...</span> giorni meravigliosi ❤️
+</div>
+
+<section class="card">
+<h2>Di cosa hai bisogno, piccola?</h2>
+<p>Non devi spiegarmi niente. Scegli soltanto quello che senti.</p>
+<div class="buttons">
+<button class="primary" onclick="showAnxiety(0)">🌙 Ho bisogno di calmarmi</button>
+<button onclick="showMissYou()">🫂 Mi manca Bopi</button>
+<button onclick="showLove()">💗 Ho bisogno di sentirmi amata</button>
+<button onclick="showMemories()">✨ I nostri ricordi felici</button>
+</div>
+</section>
+
+<section class="card">
+<h2>Una cosa da ricordare ❤️</h2>
+<p>Sono fiero di te tesoro, stai andando alla grande, sei invincibile.</p>
+<p>Ricorda che qualsiasi cosa, sono qui: chiamami o scrivimi.</p>
+</section>
+
+<p class="small">Questo piccolo posto è solo tuo, Sara. ❤️</p>
+</main>
+
+<div id="overlay" class="overlay hidden"><div class="modal" id="modal"></div></div>
+
+<script>
+const startDate = new Date('2025-11-08');
+
+function updateCounter() {
+  const today = new Date();
+  const diffTime = Math.abs(today - startDate);
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  document.getElementById('daysCount').innerText = diffDays;
+}
+updateCounter();
+
+const overlay=document.getElementById('overlay'),modal=document.getElementById('modal');
+function openModal(c){modal.innerHTML=c;overlay.classList.remove('hidden')}
+function closeModal(){overlay.classList.add('hidden')}
+
+// --- 1. ANSIA ---
+const anxietySteps = [
+  "Sta tranquilla Bipi, andrà tutto bene, ci sono io qui con te, anche se non fisicamente.",
+  "Prenditi tutto il tempo che ti serve, senza fretta tesoro.",
+  "Ora non devi pensare a tutto insieme. Resta qui con me per un momento e respira lentamente...",
+  "Mi dispiace che stai attraversando tutto questo, se vuoi parlerne scrivimi tutto amore.",
+  "Hai il diritto di stare male, va bene così, sentiti a tuo agio piccola.",
+  "Anche se le cose stanno andando male e hai ansia, ricorda che puoi farcela, sei una donna forte.",
+  "Ascolta il ritmo della mia voce e prova a seguirlo...",
+  "Sono qui piccola. Ora ci pensa il tuo papà a farti calmare. Respira lentamente, insieme a me. ❤️"
+];
+
+function showAnxiety(step = 0) {
+  if (step >= anxietySteps.length) {
+    closeModal();
+    return;
+  }
+
+  const isLast = step === anxietySteps.length - 1;
+  
+  let audioHtml = "";
+  if (step === 0) {
+    audioHtml = `
+      <button class="audio-btn" onclick="document.getElementById('bopiAudio').play()">
+        🎧 Metti le cuffie (Ascolta la mia voce)
+      </button>
+      <audio id="bopiAudio" src="voce-bopi.mp3" preload="auto"></audio>
+    `;
+  }
+
+  openModal(`
+    <div style="font-size:40px">🌙</div>
+    <h2>Sta tranquilla, Bipi.</h2>
+    
+    <div class="breatheWrap"><div class="breath">Respira<br>con me</div></div>
+    
+    <div class="message">${anxietySteps[step]}</div>
+    ${audioHtml}
+    <p class="signature">— Bopi</p>
+
+    <button class="primary" style="margin-top: 15px;" onclick="showAnxiety(${step + 1})">
+      ${isLast ? "Va molto meglio 🫶" : "Un'altra cosa ➔"}
+    </button>
+    <button class="close" onclick="closeModal()">Chiudi</button>
+  `);
+}
+
+// --- 2. MI MANCHI ---
+const missYouMessages = [
+  "Ei amore, mi manchi tantissimo anche tu. Mi manca vederti sorridere e felice come una bambina piccola.",
+  "Non sai quanto ti voglia anche io tesoro. Le mie giornate senza di te sono più buie e depresse, mi manchi un sacco.",
+  "Amore mio, sei la persona più importante per me. Mi manchi da morire e voglio stare con te, mi manca abbracciarti e coccolarti.",
+  "Se potessi comparire davanti a te adesso, probabilmente ti abbraccerei fortissimo e non ti lascerei più.",
+  "Ci sono mille cose che vorrei dirti, ma ne basta una: ti penso cucciola.",
+  "Vorrei proprio che tu fossi qui con me adesso amore.",
+  "Ogni cosa che faccio mi fa pensare a te bimba.",
+  "Non importa quanto siamo distanti, sei sempre nei miei pensieri scemotta."
+];
+let missIndex = 0;
+
+function showMissYou() {
+  const m = missYouMessages[missIndex];
+  openModal(`
+    <div class="heartline">🫂 ❤️</div>
+    <h2>Mi manchi anche tu, Sara.</h2>
+    <p class="message">${m}</p>
+    <p class="signature">Il tuo Bopi ❤️</p>
+
+    <button class="primary" style="margin-top: 15px;" onclick="nextMissYou()">Un'altra frase 🔄</button>
+    <button class="close" onclick="closeModal()">Torno a pensare a Bopi 🥹</button>
+  `);
+}
+function nextMissYou() {
+  missIndex = (missIndex + 1) % missYouMessages.length;
+  showMissYou();
+}
+
+// --- 3. AMORE ---
+const loveMessages = [
+  "Non devi avere un motivo per cercarmi. Puoi venire hier anche solo perché vuoi sentirti amata.",
+  "Ricorda che non pesi, non sei grassa e che amo tutto il tuo corpo e fisico. Sei bellissima così come sei, bambina mia.",
+  "Sono fiero di te tesoro. Stai andando alla grande. Sei invincibile.",
+  "Mi piace un sacco l'aria che c'è quando siamo insieme piccolina.",
+  "Più ti guardo e più mi chiedo come io abbia fatto a essere così fortunato.",
+  "Voglio che tu sappia che sei la mia priorità assoluta tesoro. Amarti è la cosa più naturale e bella che mi sia mai successa.",
+  "Volevo solo ricordarti che sei la cosa più bella della mia vita muah.",
+  "Sei il mio primo pensiero al mattino e l'ultimo prima di dormire."
+];
+let loveIndex = 0;
+
+function showLove() {
+  const l = loveMessages[loveIndex];
+  openModal(`
+    <div class="heartline">💗 ✨ 💗</div>
+    <h2>Vieni qui, piccola.</h2>
+    <p class="message">${l}</p>
+    <p class="signature">Qualsiasi cosa, chiamami o scrivimi. — Bopi ❤️</p>
+
+    <button class="primary" style="margin-top: 15px;" onclick="nextLove()">Un'altra dolcezza 💖</button>
+    <button class="close" onclick="closeModal()">Mi basta questo 🥺</button>
+  `);
+}
+function nextLove() {
+  loveIndex = (loveIndex + 1) % loveMessages.length;
+  showLove();
+}
+
+// --- 4. RICORDI FELICI (Galleria con foto1.jpeg -> foto62.jpeg) ---
+function showMemories() {
+  let photosHtml = '';
+  for (let i = 1; i <= 62; i++) {
+    // Prova prima fotoN.jpeg, se fallisce prova fotoN.jpg
+    photosHtml += `<img src="foto${i}.jpeg" alt="Ricordo ${i}" class="photo-item" onerror="if(this.src.endsWith('.jpeg')){this.src='foto${i}.jpg'}else{this.style.display='none'}">`;
+  }
+
+  openModal(`
+    <div class="heartline">✨ 💖 ✨</div>
+    <h2>I nostri momenti insieme</h2>
+    <p style="color: var(--muted); font-size: 13px; margin: 0;">scorri per guardarli tutti ❤️</p>
+    
+    <div class="photo-grid">
+      ${photosHtml}
+    </div>
+
+    <p class="signature">Ti amo, Sara. — Bopi ❤️</p>
+    <button class="close" onclick="closeModal()">Chiudi album 🥹</button>
+  `);
+}
+
+overlay.addEventListener('click',e=>{if(e.target===overlay)closeModal()});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+});
+</script>
+</body>
+</html>
